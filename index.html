@@ -14,7 +14,9 @@
   --acid: #C8FF57; --acid2: #a8d840;
 }
 html { scroll-behavior: smooth; }
-body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--w); overflow-x: hidden; cursor: none; }
+body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--w); overflow-x: hidden; }
+body.cursor-active { cursor: none; }
+body.cursor-active a, body.cursor-active [onclick], body.cursor-active .pcard, body.cursor-active button { cursor: none; }
 
 /* CURSOR */
 #cur { position: fixed; width: 8px; height: 8px; background: var(--acid); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .15s, height .15s; }
@@ -229,6 +231,7 @@ const cur = document.getElementById('cur');
 const ring = document.getElementById('ring');
 let mx = 0, my = 0, rx = 0, ry = 0;
 document.addEventListener('mousemove', function(e) {
+  document.body.classList.add('cursor-active');
   mx = e.clientX; my = e.clientY;
   cur.style.left = mx + 'px'; cur.style.top = my + 'px';
 });
